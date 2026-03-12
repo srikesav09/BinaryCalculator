@@ -13,7 +13,7 @@ Binary numbers are the foundation of digital electronics and computing, and this
 
 ---
 
-## 🚀 Features
+## 🚀 Feature
 
 * Perform **Binary Addition**
 * Perform **Binary Subtraction**
@@ -35,7 +35,7 @@ Binary calculators allow users to compute arithmetic operations directly on bina
 
 ---
 
-## 📂 Project Structure
+## 📂 Projects Structure
 
 ```
 BinaryCalculator
