@@ -128,7 +128,7 @@ This project is licensed under the **MIT License**.
 
 ## 👨‍💻 Author
 
-**Srikesav**
+**Srikesav M**
 
 GitHub:
 https://github.com/srikesav09
