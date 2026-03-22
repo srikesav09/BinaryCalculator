@@ -37,7 +37,7 @@ A simple and interactive **Binary Calculator** built using **HTML, CSS, and Java
 
 ## 📌 Author
 
-* Srikesav
+* Srikesav M
 
 ---
 
