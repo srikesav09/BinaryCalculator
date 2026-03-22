@@ -12,7 +12,7 @@ let eq = document.getElementById('e');
 let expr = "";
 let current = "";
 let op = "";
-let o1, o2;
+let o1 = "";
 
 btn0.onclick = () => {
     expr += "0";
@@ -26,64 +26,69 @@ btn1.onclick = () => {
     r.innerHTML = expr;
 };
 
-add.onclick = () => {
+function setOperator(operator) {
+    if (current === "") return;
     o1 = current;
-    expr += "+";
-    op = "+";
+    op = operator;
+    expr += operator;
     current = "";
     r.innerHTML = expr;
-};
+}
 
-sub.onclick = () => {
-    o1 = current;
-    expr += "-";
-    op = "-";
-    current = "";
-    r.innerHTML = expr;
-};
+add.onclick = () => setOperator("+");
+sub.onclick = () => setOperator("-");
+mul.onclick = () => setOperator("*");
+div.onclick = () => setOperator("/");
 
-mul.onclick = () => {
-    o1 = current;
-    expr += "*";
-    op = "*";
-    current = "";
-    r.innerHTML = expr;
-};
-
-div.onclick = () => {
-    o1 = current;
-    expr += "/";
-    op = "/";
-    current = "";
-    r.innerHTML = expr;
-};
 
 clr.onclick = () => {
     expr = "";
     current = "";
     op = "";
+    o1 = "";
     r.innerHTML = "";
 };
 
 eq.onclick = () => {
+    if (!o1 || !current) return;
 
-    
     let n1 = parseInt(o1, 2);
     let n2 = parseInt(current, 2);
 
-    let resultDec;
-
-    switch (op) {
-        case '+': resultDec = n1 + n2; break;
-        case '-': resultDec = n1 - n2; break;
-        case '*': resultDec = n1 * n2; break;
-        case '/': resultDec = Math.floor(n1 / n2); break;
+    if (op === '/' && n2 === 0) {
+        r.innerHTML = "Error";
+        return;
     }
 
-    let resultBin = resultDec.toString(2);
+    let result;
 
-    r.innerHTML = resultBin;
+    switch (op) {
+        case '+': result = n1 + n2; break;
+        case '-': result = n1 - n2; break;
+        case '*': result = n1 * n2; break;
+        case '/': result = Math.floor(n1 / n2); break;
+    }
 
-    expr = resultBin;
-    current = resultBin;
+    let bin = result.toString(2);
+
+    r.innerHTML = bin;
+
+    expr = bin;
+    current = bin;
+    op = "";
 };
+
+document.addEventListener("keydown", (e) => {
+
+    if (e.key === "0") btn0.click();
+    else if (e.key === "1") btn1.click();
+
+    else if (e.key === "+") add.click();
+    else if (e.key === "-") sub.click();
+    else if (e.key === "*") mul.click();
+    else if (e.key === "/") div.click();
+
+    else if (e.key === "Enter" || e.key === "=") eq.click();
+
+    else if (e.key === "Backspace" || e.key === "Escape") clr.click();
+});
